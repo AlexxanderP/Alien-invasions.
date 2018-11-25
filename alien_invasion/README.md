@@ -16,6 +16,8 @@ File break down:
         Stores each instances game stats, inititalized at the start of each game.
     bullet.py
         Stores bullet object and information needed for drawing and terminating the fired bullets when on and once off screen.
+    button.py
+        Stores the button class and associated default settings to start the game after user "starts".
     ship.py
         Stores the ship object and information needed to initialize and draw the ship, while being responsive.
     alien.py
