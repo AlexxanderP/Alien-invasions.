@@ -12,6 +12,8 @@ File break down:
     settings.py
         stores the settings class called throughout the application.
         This is how I will increase game difficulty as the player progresses.
+    scoreboard.py
+        Stores the scoreboard class and linked methods for rendering the score to image, aswell as set its rect attribute.
     gamestats.py
         Stores each instances game stats, inititalized at the start of each game.
     bullet.py
