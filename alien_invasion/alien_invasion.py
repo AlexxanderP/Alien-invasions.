@@ -1,11 +1,13 @@
 import pygame
+import game_functions as gf
 from pygame.sprite import Group
 from alien import Alien
 from settings import Settings
 from ship import Ship
 from game_stats import GameStats
 from button import Button
-import game_functions as gf
+from scoreboard import Scoreboard
+
 
 
 def run_game():
@@ -18,8 +20,9 @@ def run_game():
     #Display the Start Button
     start_button = Button(ai_settings, screen, "Start!")
     
-    #create an instance of fresh stats
+    #Create an instance to store game stats and create a scoreboard
     stats = GameStats(ai_settings)
+    sb = Scoreboard(ai_settings, screen, stats)
 
     # Set the background color.
     bg_color = (230, 230, 230)
@@ -41,6 +44,6 @@ def run_game():
                 ship.update()
                 gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
                 gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
-                
-        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, start_button)        
+
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, start_button)        
 run_game()

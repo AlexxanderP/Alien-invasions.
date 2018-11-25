@@ -65,7 +65,7 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         new_bullet = Bullet(ai_settings, screen, ship)
         bullets.add(new_bullet)
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, start_button):
+def update_screen(ai_settings, screen, stats, sb,  ship, aliens, bullets, start_button):
     """Update images on the screen, and flip to the new screen."""
     # Redraw the screen, each pass through the loop.
     screen.fill(ai_settings.bg_color)
@@ -76,13 +76,15 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, start_butto
     ship.blitme()
     aliens.draw(screen)
 
+    #Draw the scoreboard
+    sb.show_score()
+
     #Draw the start button when inactive
     if not stats.game_active:
         start_button.draw_button()
     
     # Make the most recently drawn screen visible.
     pygame.display.flip()
-
     
 def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """Update position of bullets, and get rid of old bullets."""
@@ -100,15 +102,12 @@ def check_bullet_alien_collision(ai_settings, screen, ship, aliens, bullets):
     """Responds to bullet and alien colliosions"""
     #Remove any bullets and aliens that have colided, then speed up the game.
     collisions =  pygame.sprite.groupcollide(bullets, aliens, True, True)
+    
     if len(aliens) == 0:
         #Destroy existing bullets, create new fleet and speed up
         bullets.empty()
         ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
-
-
-
-
 
 def get_number_aliens_x(ai_settings, alien_width):
     #find out limit per row
@@ -130,7 +129,6 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     alien.rect.x = alien.x
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
-
 
 def create_fleet(ai_settings, screen, ship, aliens):
     """create a full fleet"""

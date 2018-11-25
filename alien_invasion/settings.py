@@ -40,6 +40,9 @@ class Settings():
         #Fleet_direction 1 = right, fleet_direction -1 = left
         self.fleet_direction = 1
 
+        #Scoring
+        self.alien_points = 50
+
     def increase_speed(self):
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
