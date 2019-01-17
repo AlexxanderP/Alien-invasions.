@@ -1,5 +1,6 @@
-import pygame
+import pygame, os
 from pygame.sprite import Sprite
+from os.path import normpath
 
 
 class Ship(Sprite):
@@ -11,7 +12,7 @@ class Ship(Sprite):
         self.ai_settings = ai_settings
 
         # Load the ship image, and get its rect.
-        self.image = pygame.image.load('images\ship.bmp')
+        self.image = pygame.image.load(normpath('images/ship.bmp'))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
